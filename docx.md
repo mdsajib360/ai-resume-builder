@@ -12,9 +12,49 @@
 ## technology used in this project : 
 - **shandcn**, react, 
 
+## chapter: 2 React Routing :
+ - install react router dom : npm install react-router-dom
+ - got to [react-router](https://reactrouter.com/7.6.1/start) site for more info 
+
+## router v7 nested routing: 
+- create router 
+- ```Javascript 
+            const router = createBrowserRouter([
+        {
+        
+            element: <App />,
+            children: [
+            {
+                path: '/',
+                element: <Home/>
+            }
+            ]
+        },
+        {
+        path: '/auth/sign-in',
+        
+        element: <SignInPage/>
+        },
+        ])
+        createRoot(document.getElementById('root')).render(
+        <StrictMode>
+            <RouterProvider router = {router}/>
+        </StrictMode>,
+        )
+
+        // use the home page in app.jsx using outlet component of react-router
 
 
-## tips & advices: 
+    ```
+
+## user authentication diagram: 
+![alt text](./src/assets/image.png)
+
+## clerk authentication user management. 
+- setup & follow the instruction from clerk authentication website 
+- paste clerk secret key in .env.local 
+## tips , resources & advices: 
 - for team you can use github pull request extension 
 -  use es7+ react extension 
--  
+-  for logo use logoipsum 
+-  add custom colors in tailwind v4 link(https://www.youtube.com/watch?v=K6XO8FTiGIs)
