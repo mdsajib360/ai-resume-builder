@@ -5,8 +5,10 @@ import App from "./App.jsx";
 import SignInPage from "./auth/sign-in/Index.jsx";
 import "./index.css";
 import Home from "./pages/Home/Home.jsx";
-import Dashboard from "./pages/dashboard/dashboard.jsx";
+
 import { ClerkProvider } from "@clerk/clerk-react";
+import Dashboard from "./pages/dashboard/Dashboard.jsx";
+import EditResume from './pages/dashboard/resume/[resumeId]/edit/EditResume';
 const router = createBrowserRouter([
   {
     element: <App />,
@@ -15,8 +17,13 @@ const router = createBrowserRouter([
         path: "/dashboard",
         element: <Dashboard />,
       },
+      {
+        path: "/dashboard/resume/:resumeId/edit",
+        element: <EditResume/>
+      }
     ],
   },
+  
   {
     path: "/",
     element: <Home />,
@@ -24,7 +31,6 @@ const router = createBrowserRouter([
 
   {
     path: "/auth/sign-in",
-
     element: <SignInPage />,
   },
 ]);

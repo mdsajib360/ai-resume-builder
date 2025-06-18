@@ -2,6 +2,7 @@
 /* @import "tw-animate-css"; */
 
 @theme {
-  --color-primary : #9f5bff
+  --color-primary : #9f5bff;
+  --color-secondary:#fcfcff
 }
 
