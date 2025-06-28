@@ -55,9 +55,9 @@
 
 ![alt text](./src/assets/image.png)
 
-## setup starpi backend for the application :
+## setup strapi backend for the application :
 
-- starpi backend & frontend diagram :
+- strapi backend & frontend diagram :
 - ![alt text](./src/assets/starpi diagram.png)
 - npx create-strapi-app@latest
 - enter host name as localhost 
@@ -69,6 +69,14 @@
   
 ## Dynamic Routing 
 - inside the dashboard , create a new route
+
+## summary generate using AI: 
+- go to this link below or search gemini api 
+- https://aistudio.google.com/prompts/new_chat
+
+## install react rich text editor: 
+- https://www.npmjs.com/package/react-simple-wysiwyg
+- 
 
 ## tips , resources & advices:
 

@@ -20,13 +20,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/resume/:resumeId/edit",
         element: <EditResume/>
-      }
+      },
+      
     ],
   },
   
   {
     path: "/",
-    element: <Home />,
+  element: <Home />,
   },
 
   {

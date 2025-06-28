@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_experiencelist_experienceslists",
+  "info": {
+    "displayName": "ExperienceList",
+    "icon": "briefcase"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "companyName": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "startDate": {
+      "type": "string"
+    },
+    "endDate": {
+      "type": "string"
+    },
+    "workSummary": {
+      "type": "richtext"
+    },
+    "currentlyWorking": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}
