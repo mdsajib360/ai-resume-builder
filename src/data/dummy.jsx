@@ -55,22 +55,22 @@ export default {
         {
             id: 1,
             name: 'Angular',
-            rating: 80,
+            rating: 0,
         },
         {
             id: 2,
             name: 'React',
-            rating: 100,
+            rating: 0,
         },
         {
             id: 3,
             name: 'MySql',
-            rating: 80,
+            rating: 0,
         },
         {
             id: 4,
             name: 'React Native',
-            rating: 100,
+            rating: 0,
         }
     ]
 };

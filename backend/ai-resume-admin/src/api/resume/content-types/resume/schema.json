@@ -53,6 +53,14 @@
       "type": "component",
       "component": "experiencelist.experiencelist",
       "repeatable": true
+    },
+    "skills": {
+      "type": "component",
+      "component": "skills.skills",
+      "repeatable": true
+    },
+    "themeColor": {
+      "type": "string"
     }
   }
 }

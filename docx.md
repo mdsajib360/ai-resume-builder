@@ -76,7 +76,10 @@
 
 ## install react rich text editor: 
 - https://www.npmjs.com/package/react-simple-wysiwyg
-- 
+
+## strapi admin login
+- contactme.sajib@gmail.com 
+- afd#9%#%#FDF
 
 ## tips , resources & advices:
 

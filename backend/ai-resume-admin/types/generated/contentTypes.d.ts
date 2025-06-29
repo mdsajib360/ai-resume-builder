@@ -443,7 +443,9 @@ export interface ApiResumeResume extends Struct.CollectionTypeSchema {
     phone: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     resumeId: Schema.Attribute.String;
+    skills: Schema.Attribute.Component<'skills.skills', true>;
     summary: Schema.Attribute.Text;
+    themeColor: Schema.Attribute.String;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

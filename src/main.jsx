@@ -9,6 +9,7 @@ import Home from "./pages/Home/Home.jsx";
 import { ClerkProvider } from "@clerk/clerk-react";
 import Dashboard from "./pages/dashboard/Dashboard.jsx";
 import EditResume from './pages/dashboard/resume/[resumeId]/edit/EditResume';
+import ViewResume from "./pages/my-resume/[resumeId]/view/ViewResume.jsx";
 const router = createBrowserRouter([
   {
     element: <App />,
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
     path: "/auth/sign-in",
     element: <SignInPage />,
   },
+    {
+    path:'/my-resume/:resumeId/view',
+    element:<ViewResume/>
+  }
 ]);
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
