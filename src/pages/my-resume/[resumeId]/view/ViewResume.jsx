@@ -9,7 +9,7 @@ import { ResumeInfoContext } from '../../../../context/ResumeInfoContext'
 
 function ViewResume() {
 
-    const [resumeInfo,setResumeInfo]=useContext(ResumeInfoContext);
+    const [resumeInfo,setResumeInfo]=useState();
     const {resumeId}=useParams();
 
     useEffect(()=>{
@@ -53,7 +53,7 @@ function ViewResume() {
             
         </div>
         <div className='my-10 mx-10 md:mx-20 lg:mx-36'>
-        <div id="print-area" >
+        <div id="print-area" className='content'>
                 <ResumePreview/>
             </div>
             </div>

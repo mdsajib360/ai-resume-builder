@@ -8,7 +8,7 @@ export interface EducationEducation extends Struct.ComponentSchema {
   };
   attributes: {
     degree: Schema.Attribute.String;
-    description: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
     endDate: Schema.Attribute.String;
     major: Schema.Attribute.String;
     startDate: Schema.Attribute.String;
@@ -36,7 +36,7 @@ export interface ExperienceExperience extends Struct.ComponentSchema {
 export interface ExperiencelistExperiencelist extends Struct.ComponentSchema {
   collectionName: 'components_experiencelist_experienceslists';
   info: {
-    displayName: 'ExperienceList';
+    displayName: 'experiencelist';
     icon: 'briefcase';
   };
   attributes: {

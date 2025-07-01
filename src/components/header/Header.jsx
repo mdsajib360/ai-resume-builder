@@ -10,15 +10,22 @@ function Header() {
       <Link to="/" > 
       <img src="/logo.svg" width={100} height={100} alt="logo" />
       </Link>
-
       {!isSignedIn && isLoaded &&
+        <div>
+           <Link to="/" >
+          <Button className="text-white">Home</Button>
+        </Link>
         <Link to="/auth/sign-in" >
           <Button className="text-white">Get Started</Button>
         </Link>
+      </div>
     
       }{ isSignedIn && isLoaded &&
         <div className='flex items-center gap-2'>
-          <Link to="/dashboard" >
+           <Link to="/" >
+          <Button className="text-white">Home</Button>
+        </Link>
+          <Link className='text-white' to="/dashboard" >
             <Button>Dashboard</Button>
           </Link>
           <UserButton />

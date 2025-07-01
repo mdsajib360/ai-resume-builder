@@ -1,8 +1,10 @@
 import React from 'react'
 
-function PersonalDetailPreview({resumeInfo}) {
+function PersonalDetailPreview({ resumeInfo }) {
+  console.log('wv', resumeInfo)
+  const themeColor= resumeInfo?.themeColor || 'black'
   return (
-    <div className='font-bold text-xl text-center' style={{color: resumeInfo?.themeColor}}>
+    <div className='font-bold text-xl text-center' style={{color: themeColor}}>
       <h2>{resumeInfo?.firstName} {resumeInfo?.lastName} </h2>
       <h2 className='text-center text-sm fond-medium'>{ resumeInfo?.jobTitle}</h2>
       <h2 className='text-center font-normal text-xs'>{ resumeInfo?.address}</h2>

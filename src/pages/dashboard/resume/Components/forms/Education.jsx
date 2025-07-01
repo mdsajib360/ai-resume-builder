@@ -65,7 +65,7 @@ function Education() {
       toast('Details updated !')
     },(error)=>{
       setLoading(false);
-      toast('Server Error, Please try again!')
+      toast('Server Error, Please try again!', error.message)
     })
 
   }
@@ -83,7 +83,7 @@ function Education() {
 
     <div>
       {educationalList.map((item,index)=>(
-        <div>
+        <div key={index}>
           <div className='grid grid-cols-2 gap-3 border p-3 my-5 rounded-lg'>
             <div className='col-span-2'>
               <label>University Name</label>

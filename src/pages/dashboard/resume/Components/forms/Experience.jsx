@@ -37,7 +37,7 @@ function Experience() {
   ]);
 
   useEffect(() => {
-    resumeInfo && setExperienceList(resumeInfo?.experience);
+    resumeInfo?.experiencelist.length>0 && setExperienceList(resumeInfo?.experiencelist);
   }, []);
 
   const handleChange = (event, index) => {
@@ -83,12 +83,12 @@ function Experience() {
       },
       (error) => {
         setLoading(false);
-        toast('Server Error, Please try again!');
+        toast('Server Error, Please try again!', error.message);
       }
     );
   };
-  console.log("resumeId:",params.resumeId)
-   const handleRichTextEditor=(e,name,index)=>{
+  
+   const handleRichTextEditor=(e,name,index, dvalue)=>{
      console.log("handleRich", e, experienceList)   
      const newEntries = experienceList.slice();
      newEntries[index][name]=e.target.value;
@@ -100,7 +100,7 @@ function Experience() {
   useEffect(() => {
     setResumeInfo({
       ...resumeInfo,
-      experience: experienceList,
+      experiencelist: experienceList,
     });
   }, [experienceList]);
 
@@ -119,7 +119,8 @@ function Experience() {
                   name="title"
                   onChange={(e) => handleChange(e, index)}
                   defaultValue={item?.title}
-                />
+                  />
+                 
               </div>
               <div>
                 <label>Company Name</label>

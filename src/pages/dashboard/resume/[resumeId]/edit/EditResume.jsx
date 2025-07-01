@@ -8,15 +8,18 @@ import GlobalApi from '../../../../../../service/GlobalApi';
 
 function EditResume() {
   const {resumeId} = useParams();
-  console.log(resumeId);
+  // console.log(resumeId);
   
-  const [resumeInfo, setResumeInfo] = useState(dummy);
+  const [resumeInfo, setResumeInfo] = useState([]);
   useEffect(() => {
-    setResumeInfo(dummy)
-// GetResumeInfo()
+    GetResumeInfo()
+  
     
   }, [])
-  
+  GlobalApi.GetResumeById(resumeId).then(res =>{
+    // console.log(res.data.data)
+    
+  })
    const GetResumeInfo=()=>{
         GlobalApi.GetResumeById(resumeId).then(resp=>{
           console.log(resp.data.data);

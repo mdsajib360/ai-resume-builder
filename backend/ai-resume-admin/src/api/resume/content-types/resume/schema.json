@@ -44,6 +44,9 @@
     "summary": {
       "type": "text"
     },
+    "themeColor": {
+      "type": "string"
+    },
     "education": {
       "type": "component",
       "component": "education.education",
@@ -58,9 +61,6 @@
       "type": "component",
       "component": "skills.skills",
       "repeatable": true
-    },
-    "themeColor": {
-      "type": "string"
     }
   }
 }

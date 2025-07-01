@@ -1,25 +1,26 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { ResumeInfoContext } from '@/context/ResumeInfoContext'
-import { LoaderCircle } from 'lucide-react';
+import { LoaderCircle, LoaderCircleIcon } from 'lucide-react';
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { toast } from 'sonner';
 import GlobalApi from '../../../../../../service/GlobalApi';
 
-function PersonalDetail({enabledNext}) {
+function PersonalDetail({enableNext}) {
 
     const params=useParams();
     const {resumeInfo,setResumeInfo}=useContext(ResumeInfoContext)
-
-    const [formData,setFormData]=useState();
+    console.log(resumeInfo)
+    const [formData, setFormData] = useState();
     const [loading,setLoading]=useState(false);
     useEffect(()=>{
         console.log("---",resumeInfo)
     },[])
 
     const handleInputChange=(e)=>{
-        enabledNext(false)
+        console.log('formData', formData)
+        enableNext(false)
         const {name,value}=e.target;
 
         setFormData({
@@ -30,17 +31,24 @@ function PersonalDetail({enabledNext}) {
             ...resumeInfo,
             [name]:value
         })
+                console.log('formData', formData)
+
     }
 
     const onSave=(e)=>{
         e.preventDefault();
         setLoading(true)
-        const data={
+        if (!formData) {
+            toast("Nothing to Update")
+            setLoading(false)
+            return 
+        }
+        const data = {
             data:formData
         }
         GlobalApi.UpdateResumeDetail(params?.resumeId,data).then(resp=>{
             console.log(resp);
-            enabledNext(true);
+            enableNext(true);
             setLoading(false);
             toast("Details updated")
         },(error)=>{
@@ -92,7 +100,7 @@ function PersonalDetail({enabledNext}) {
             <div className='mt-3 flex justify-end'>
                 <Button type="submit"
                 disabled={loading}>
-                    {loading?<LoaderCircle className='animate-spin' />:'Save'}
+                    {loading?<LoaderCircleIcon className='animate-spin' />:'Save'}
                     </Button>
             </div>
         </form>

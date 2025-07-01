@@ -21,8 +21,9 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import GlobalApi from '../../../../service/GlobalApi'
+import { toast } from 'sonner'
 function ResumeCardItem({resume,refreshData}) {
-
+  console.log('resume', resume)
   const navigation=useNavigate();
   const [openAlert,setOpenAlert]=useState(false);
   const [loading,setLoading]=useState(false);
@@ -53,7 +54,7 @@ function ResumeCardItem({resume,refreshData}) {
           rounded-t-lg border-t-4
         '
         style={{
-          borderColor:resume?.themeColor
+          borderColor:resume?.themeColor || 'black'
         }}
         >
               <div className='flex 
@@ -65,7 +66,7 @@ function ResumeCardItem({resume,refreshData}) {
         </Link>
         <div className='border p-3 flex justify-between  text-white rounded-b-lg shadow-lg'
          style={{
-          background:resume?.themeColor || 'black'
+          background:resume?.themeColor ||'black'
         }}>
           <h2 className='text-sm'>{resume.title}</h2>
          
@@ -83,25 +84,30 @@ function ResumeCardItem({resume,refreshData}) {
           </DropdownMenuContent>
         </DropdownMenu>
 
-        <AlertDialog open={openAlert}>
-        
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-            <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete your account
-              and remove your data from our servers.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel onClick={()=>setOpenAlert(false)}>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={onDelete} 
-            disabled={loading}>
-              {loading? <Loader2Icon className='animate-spin'/>:'Delete'}
-              </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+       <AlertDialog open={openAlert}>
+  <AlertDialogContent className="bg-blue-500 text-white">
+    <AlertDialogHeader>
+      <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+      <AlertDialogDescription>
+        This action cannot be undone. This will permanently delete your account
+        and remove your data from our servers.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel onClick={() => setOpenAlert(false)}>
+        Cancel
+      </AlertDialogCancel>
+      <AlertDialogAction onClick={onDelete} disabled={loading}>
+        {loading ? (
+          <Loader2Icon className="animate-spin" />
+        ) : (
+          "Delete"
+        )}
+      </AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>
+
 
         </div>
         </div>

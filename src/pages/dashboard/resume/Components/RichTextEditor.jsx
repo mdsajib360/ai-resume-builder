@@ -32,7 +32,7 @@ function RichTextEditor({ onRichTextEditorChange, index, defaultValue, name }) {
   }, [defaultValue]);
 
   const GenerateSummaryByAI = async () => {
-    const experienceTitle = resumeInfo?.experience[index]?.title;
+    const experienceTitle = resumeInfo?.experiencelist[index]?.title;
     if (!experienceTitle) {
       toast("Please Add Position Title");
       return;
@@ -48,7 +48,7 @@ function RichTextEditor({ onRichTextEditorChange, index, defaultValue, name }) {
       setLoading(false);
     }
   };
-
+  console.log(onRichTextEditorChange)
   return (
     <div>
       <div className="flex justify-between my-2">
@@ -77,7 +77,7 @@ function RichTextEditor({ onRichTextEditorChange, index, defaultValue, name }) {
          <Editor
           value={value}
           name= {name}
-      onChange={(e) => {
+          onChange={(e) => {
         setValue(e.target.value);
         onRichTextEditorChange(e);
       }}

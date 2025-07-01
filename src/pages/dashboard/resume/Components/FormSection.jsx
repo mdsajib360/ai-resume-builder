@@ -15,7 +15,7 @@ function FormSection() {
   const {resumeId}=useParams();
   return (
     <div>
-        <div className='flex justify-between items-center'>
+        <div className='flex justify-between items-center bg-white'>
           <div className='flex gap-5'>
             <Link to={"/dashboard"}>
           <Button><LucideHome/> </Button>
@@ -24,7 +24,7 @@ function FormSection() {
          
           <ThemeColor/>
           </div>
-          <div className='flex gap-2'>
+          <div className='flex gap-2 bg-white'>
             {activeFormIndex>1
             &&<Button size="sm" 
             onClick={()=>setActiveFormIndex(activeFormIndex-1)}> <ArrowLeft/> </Button> }
@@ -37,18 +37,19 @@ function FormSection() {
           </div>
         </div>
         {/* Personal Detail  */}
-        {activeFormIndex==1?  
-        <PersonalDetails enabledNext={(v)=>setEnableNext(v)} />
+         {activeFormIndex==1?  
+        <PersonalDetails  enableNext={(v) => setEnableNext(v)} />
+       
         :activeFormIndex==2?
-              <Summary  enabledNext={(v)=>setEnableNext(v)} />
+              <Summary  enableNext={(v)=>setEnableNext(v)} />
         :activeFormIndex==3?
           <Experience />  
           :activeFormIndex==4?
-          <Education/>
+          <Education />
           :activeFormIndex==5?
           <Skills/>
           :activeFormIndex==6?
-          <Navigate to={'/resumes/'+resumeId+"/view"}/>
+          <Navigate to={'/my-resume/'+resumeId+"/view"}/>
               
         :null
           }

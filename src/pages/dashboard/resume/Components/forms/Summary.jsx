@@ -4,7 +4,7 @@ import {Textarea} from '../../../../../components/ui/textarea'
 import { ResumeInfoContext } from '../../../../../context/ResumeInfoContext'
 import { useParams } from 'react-router-dom'
 import GlobalApi from '../../../../../../service/GlobalApi'
-import { Brain, Loader, LoaderCircle } from 'lucide-react'
+import { Brain, Loader, LoaderCircle, LoaderPinwheelIcon, LucideLoaderPinwheel } from 'lucide-react'
 import { toast } from 'sonner'
 import { fetchResumeSummary } from '../../../../../../service/AIMODEL'
 
@@ -17,20 +17,20 @@ function Summary({enableNext}) {
     const [aiGeneratedSummaryList, setAIGeneratedSummaryList] = useState([]);
     const [suggestionLoading, setSuggestionLoading] = useState(false)
     const params = useParams()
-  console.log(resumeInfo.jobTitle);
+
+  console.log(enableNext);
   
   const GenerateSummaryFromAI = async () => {
       
     const jobTitle = resumeInfo?.jobTitle;
-    if (!jobTitle) {
-      return
-    }
+    
     try {
      setSuggestionLoading(true)
         // Await the result of the promise
       const result = await fetchResumeSummary(jobTitle);
       const parsedResult = JSON.parse(result);
       setAIGeneratedSummaryList([parsedResult])
+      console.log(parsedResult)
       setLoading(false) 
       setSuggestionLoading(false)
     } catch (error) {
@@ -66,13 +66,15 @@ function Summary({enableNext}) {
       toast("Summary updated")
     }, (error) => {
       setLoading(false)
+            enableNext(true)
+
     })
   }
  console.log(aiGeneratedSummaryList)
   
     return (
       <div>
-        <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10">
+        <div className="p-5  shadow-lg rounded-lg border-t-primary border-t-4 mt-10">
           <h2 className="font-bold text-lg">Summary</h2>
           <p>Add Summary For Your Job Title</p>
           <form className="mt-7" onSubmit={onSave}>
@@ -85,8 +87,17 @@ function Summary({enableNext}) {
                 size="sm"
                 className="border-primary text-primary flex gap-2 px-4 py-2 rounded-lg transition duration-300 ease-in-out hover:bg-primary hover:text-white hover:border-transparent focus:ring-2 focus:ring-primary focus:ring-offset-2 active:scale-95"
               >
-                <Brain className="h-4 w-4 animate-bounce" />
-                Generate from AI
+                {suggestionLoading && !summary ? (
+            <>
+              <LoaderPinwheelIcon />
+              <span> Generating ...</span>
+            </>
+          ) : (
+            <>
+              <Brain className="h-4 w-4 animate-bounce" />
+              <span> Generate from AI</span>
+            </>
+          )}
               </Button>
             </div>
             <Textarea
@@ -96,7 +107,7 @@ function Summary({enableNext}) {
              onChange={(e) => setSummary(e.target.value)}
             />
             <div className="mt-2 flex justify-end">
-              <Button disabled={loading} type="submit">
+              <Button disabled={loading && !summary} type="submit">
                 {loading ? (
                   <LoaderCircle className="animate-spin    " />
                 ) : (
@@ -115,10 +126,10 @@ function Summary({enableNext}) {
                 <Loader className="animate-spin h-8 w-8 text-primary" />
                 <span className="ml-2 text-primary font-semibold">Generating Suggestions...</span>
               </div>)}
-            {aiGeneratedSummaryList.map((item, index) => (
+            {aiGeneratedSummaryList?.map((item, index) => (
               <div key={index} className="p-5 shadow-lg my-4 rounded-lg">
                 <h2 className="font-bold text-primary my-2">{item.jobTitle}</h2>
-                {item.resumeSummaries.map((summaryObj, idx) => {
+                {item?.resumeSummaries?.map((summaryObj, idx) => {
                   const levelColor =
                     summaryObj.experienceLevel === "Fresher"
                       ? "text-green-600"

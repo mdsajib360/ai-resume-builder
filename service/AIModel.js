@@ -24,7 +24,7 @@ import { GoogleGenAI } from '@google/genai';
             role: 'user',
             parts: [
               {
-                text: `Job Title:${jobTitle}, Depends on job title give me summery for my resume within 4-5 lines in JSON format with field experience Level and Summery with Experience level for Fresher, Mid-Level, Experienced. keep the object name resumeSummaries in every response do not change this`,
+                text: `Job Title:${jobTitle}, Depends on job title give me summery for my resume within 4-5 lines in JSON format with field experience Level and Summery with Experience level for Fresher, Mid-Level, Experienced. keep the object name resumeSummaries in every response do not change this. because i'll use js map method to resumeSummaries. so please do not change this`,
               },
             ],
           },
