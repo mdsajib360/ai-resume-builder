@@ -8,7 +8,7 @@ function Header() {
   return (
     <div className=' p-3 px-5 flex item-center justify-between shadow-md'>
       <Link to="/" > 
-      <img src="/logo.svg" width={100} height={100} alt="logo" />
+      <img src="../../../public/logo.png" width={50} height={100} alt="logo" />
       </Link>
       {!isSignedIn && isLoaded &&
         <div>
