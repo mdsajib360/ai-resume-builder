@@ -11,34 +11,29 @@ function ViewResume() {
 
     const [resumeInfo,setResumeInfo]=useState();
     const {resumeId}=useParams();
-    
+
     useEffect(()=>{
         GetResumeInfo();
     },[])
     const GetResumeInfo=()=>{
         GlobalApi.GetResumeById(resumeId).then(resp=>{
-            console.log(resp?.data.data);
-            setResumeInfo(resp?.data.data);
+            console.log(resp.data.data);
+            setResumeInfo(resp.data.data);
         })
     }
 
     const HandleDownload=()=>{
         window.print();
   }
-  
    useEffect(() => {
   if (resumeInfo?.firstName && resumeInfo?.lastName) {
     document.title = `${resumeInfo.firstName} ${resumeInfo.lastName}_resume`;
   }
 }, [resumeInfo]);
 
-
   return (
-      <ResumeInfoContext.Provider value={{ resumeInfo, setResumeInfo }} >
-          
-      
+    <ResumeInfoContext.Provider value={{resumeInfo,setResumeInfo}} >
         <div id="no-print">
-       
 
         <div className='my-10 mx-10 md:mx-20 lg:mx-36'>
             <h2 className='text-center text-2xl font-medium'>
