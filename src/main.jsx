@@ -6,11 +6,13 @@ import App from "./App.jsx";
 import Home from "./pages/Home/Home.jsx";
 import SignInPage from "./auth/sign-in/Index.jsx";
 import Dashboard from "./pages/dashboard/Dashboard.jsx";
-import EditResume from "./pages/dashboard/resume/[resumeId]/edit/EditResume.jsx";
-import ViewResume from "./pages/my-resume/[resumeId]/view/ViewResume.jsx";
+
+
 
 import { ClerkProvider } from "@clerk/clerk-react";
 import "./index.css";
+import EditResume from "./pages/dashboard/resume/[resumeId]/edit/EditResume.jsx";
+import ViewResume from "./pages/my-resume/[resumeId]/view/ViewResume.jsx";
 
 const router = createBrowserRouter([
   {
