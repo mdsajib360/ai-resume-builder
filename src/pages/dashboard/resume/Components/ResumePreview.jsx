@@ -6,10 +6,13 @@ import ExperiencePreview from './preview/ExperiencePreview';
 import EducationalPreview from './preview/EducationalPreview';
 import SkillPreview from './preview/SkillPreview'
 function ResumePreview() {
-  const { resumeInfo, setResumeInfo } = useContext(ResumeInfoContext);
+  const { resumeInfo } = useContext(ResumeInfoContext);
     const themeColor= resumeInfo?.themeColor || 'black'
 
     return (
+      <>
+        {resumeInfo && 
+      
       <div className='shadow-lg h-full p-14 border-t-[20px] bg-white' style={{borderColor: themeColor}} >
            
         {/* personal details */}
@@ -24,6 +27,8 @@ function ResumePreview() {
         <SkillPreview resumeInfo={resumeInfo} /> 
       
       </div>
+      }
+      </>
   )
 }
 
