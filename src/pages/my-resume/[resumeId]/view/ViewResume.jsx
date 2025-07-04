@@ -11,7 +11,7 @@ function ViewResume() {
 
     const [resumeInfo,setResumeInfo]=useState();
     const {resumeId}=useParams();
-
+    console.log('rinfo',resumeInfo?.firstName)
     useEffect(()=>{
         GetResumeInfo();
     },[])
@@ -24,12 +24,21 @@ function ViewResume() {
 
     const HandleDownload=()=>{
         window.print();
-    }
+  }
+  
+   useEffect(() => {
+  if (resumeInfo?.firstName && resumeInfo?.lastName) {
+    document.title = `${resumeInfo.firstName} ${resumeInfo.lastName}_resume`;
+  }
+}, [resumeInfo]);
+
 
   return (
-    <ResumeInfoContext.Provider value={{resumeInfo,setResumeInfo}} >
+      <ResumeInfoContext.Provider value={{ resumeInfo, setResumeInfo }} >
+          
+      
         <div id="no-print">
-        <Header/>
+       
 
         <div className='my-10 mx-10 md:mx-20 lg:mx-36'>
             <h2 className='text-center text-2xl font-medium'>

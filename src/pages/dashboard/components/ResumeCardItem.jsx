@@ -48,7 +48,7 @@ function ResumeCardItem({resume,refreshData}) {
   return (
     
        <div className=''>
-          <Link to={'/dashboard/resume/'+resume.documentId+"/edit"}>
+          <Link to={'/dashboard/resume/'+resume?.documentId+"/edit"}>
         <div className='p-14  bg-gradient-to-b
           from-pink-100 via-purple-200 to-blue-200
         h-[280px] 
@@ -78,8 +78,8 @@ function ResumeCardItem({resume,refreshData}) {
           <DropdownMenuContent>
            
             <DropdownMenuItem  onClick={()=>navigation('/dashboard/resume/'+resume.documentId+"/edit")}>Edit</DropdownMenuItem>
-            <DropdownMenuItem onClick={()=>navigation('/my-resume/'+resume.documentId+"/view")}>View</DropdownMenuItem>
-            <DropdownMenuItem onClick={()=>navigation('/my-resume/'+resume.documentId+"/view")}>Download</DropdownMenuItem>
+            <DropdownMenuItem onClick={()=>navigation('/my-resume/'+resume?.documentId+"/view")}>View</DropdownMenuItem>
+            <DropdownMenuItem onClick={()=>navigation('/my-resume/'+resume?.documentId+"/view")}>Download</DropdownMenuItem>
             <DropdownMenuItem onClick={()=>setOpenAlert(true)}>Delete</DropdownMenuItem>
             
           </DropdownMenuContent>
