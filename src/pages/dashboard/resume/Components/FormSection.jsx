@@ -3,12 +3,12 @@ import PersonalDetails from './forms/PersonalDetails'
 import { ArrowLeft, ArrowRight, HomeIcon, LayoutGrid, LucideHome } from 'lucide-react'
 import {Button} from "../../../../components/ui/button"
 import Summary from './forms/Summary';
-import Experience from './forms/Experience';
 import Education from './forms/Education';
 import Skills from './forms/Skills';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import Home from '../../../Home/Home';
 import ThemeColor from './ThemeColor';
+import Experience from './forms/Experience';
 function FormSection() {
   const [activeFormIndex,setActiveFormIndex]=useState(1);
   const [enableNext,setEnableNext]=useState(true);
