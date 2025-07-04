@@ -28,9 +28,7 @@ function ResumeCardItem({resume,refreshData}) {
   const navigation=useNavigate();
   const [openAlert,setOpenAlert]=useState(false);
   const [loading,setLoading]=useState(false);
-  // const onMenuClick=(url)=>{
-  //   navigation(url)
-  // }
+
 
 
   const onDelete=()=>{
