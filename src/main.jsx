@@ -13,7 +13,7 @@ import { ClerkProvider } from "@clerk/clerk-react";
 import "./index.css";
 import EditResume from "./pages/dashboard/resume/[resumeId]/edit/EditResume.jsx";
 import ViewResume from "./pages/my-resume/[resumeId]/view/ViewResume.jsx";
-console.log('viewresuem',ViewResume);
+console.log('ViewResume is', ViewResume); // should never be undefined
 
 const router = createBrowserRouter([
   {
