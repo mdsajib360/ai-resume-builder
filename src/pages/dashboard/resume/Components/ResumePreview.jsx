@@ -12,7 +12,8 @@ function ResumePreview() {
 
     return (
       <>
-        {!resumeInfo &&  <Loader className="animate-spin h-8 w-8 text-primary" /> }
+        {!resumeInfo &&   <div className='flex justify-center'><Loader className="animate-spin h-8 w-8 " /></div>}
+        
         {resumeInfo && 
       
       <div className='shadow-lg h-full p-14 border-t-[20px] bg-white' style={{borderColor: themeColor}} >

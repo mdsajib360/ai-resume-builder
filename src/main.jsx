@@ -13,7 +13,7 @@ import { ClerkProvider } from "@clerk/clerk-react";
 import "./index.css";
 import EditResume from "./pages/dashboard/resume/[resumeId]/edit/EditResume.jsx";
 import ViewResume from "./pages/my-resume/[resumeId]/view/ViewResume.jsx";
-console.log('ViewResume is', ViewResume); // should never be undefined
+
 
 const router = createBrowserRouter([
   {
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "dashboard", element: <Dashboard /> },
       { path: "dashboard/resume/:resumeId/edit", element: <EditResume /> },
-      { path: "my-resume/:resumeId/view", element: <ViewResume/> },
+      { path: "my-resume/:resumeId/view", element: <ViewResume /> },
     ],
   },
   {
