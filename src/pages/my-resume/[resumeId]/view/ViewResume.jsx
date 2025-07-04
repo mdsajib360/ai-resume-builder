@@ -32,7 +32,8 @@ function ViewResume() {
 }, [resumeInfo]);
 
   return (
-    <ResumeInfoContext.Provider value={{resumeInfo,setResumeInfo}} >
+    <>
+     <ResumeInfoContext.Provider value={{resumeInfo,setResumeInfo}} >
         <div id="no-print">
 
         <div className='my-10 mx-10 md:mx-20 lg:mx-36'>
@@ -62,6 +63,7 @@ function ViewResume() {
             </div>
             </div>
     </ResumeInfoContext.Provider>
+    </>
   )
 }
 

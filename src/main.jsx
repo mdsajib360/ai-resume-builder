@@ -23,7 +23,7 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "dashboard", element: <Dashboard /> },
       { path: "dashboard/resume/:resumeId/edit", element: <EditResume /> },
-      { path: "my-resume/:resumeId/view", element: <ViewResume /> },
+      { path: "my-resume/:resumeId/view", element: <ViewResume/> },
     ],
   },
   {
