@@ -53,6 +53,7 @@ function PersonalDetail({enableNext}) {
             toast("Details updated")
         },(error)=>{
             setLoading(false);
+            toast('server error ', error.message)
         })
         
     }

@@ -18,7 +18,7 @@ function Summary({enableNext}) {
     const [suggestionLoading, setSuggestionLoading] = useState(false)
     const params = useParams()
 
-  console.log(enableNext);
+  console.log(summary);
   
   const GenerateSummaryFromAI = async () => {
       
@@ -27,16 +27,18 @@ function Summary({enableNext}) {
     try {
      setSuggestionLoading(true)
         // Await the result of the promise
-      const result = await fetchResumeSummary(jobTitle);
+      if (jobTitle) {
+        const result = await fetchResumeSummary(jobTitle);
       const parsedResult = JSON.parse(result);
       setAIGeneratedSummaryList([parsedResult])
-      console.log(parsedResult)
+   }
       setLoading(false) 
       setSuggestionLoading(false)
     } catch (error) {
       
-       console.error("Error fetching summary:", error.message);
+      console.error("Error fetching summary:", error.message);
       setLoading(false); // Ensure loading state is reset
+      toast('error while generating summary, check the job title')
       setSuggestionLoading(false)
     }
 };
@@ -71,7 +73,7 @@ function Summary({enableNext}) {
 
     })
   }
- console.log(aiGeneratedSummaryList)
+ console.log('ai List', aiGeneratedSummaryList)
   
     return (
       <div>
@@ -127,9 +129,12 @@ function Summary({enableNext}) {
                 <Loader className="animate-spin h-8 w-8 text-primary" />
                 <span className="ml-2 text-primary font-semibold">Generating Suggestions...</span>
               </div>)}
-            {aiGeneratedSummaryList?.map((item, index) => (
+            {
+              aiGeneratedSummaryList[0]?.error ? <h3 className='text-center text-xl text-red-500 font-bold'>{aiGeneratedSummaryList[0].error}. Please Enter Valid Job Title</h3> :
+                 aiGeneratedSummaryList?.map((item, index) => (
               <div key={index} className="p-5 shadow-lg my-4 rounded-lg">
                 <h2 className="font-bold text-primary my-2">{item.jobTitle}</h2>
+                {item?.resumeSummaries.map((elem)=> elem=== 'nulll' && <h2 className="text-amber-700">Please Enter a valid job title </h2>) }
                 {item?.resumeSummaries?.map((summaryObj, idx) => {
                   const levelColor =
                     summaryObj.experienceLevel === "Fresher"
@@ -151,7 +156,8 @@ function Summary({enableNext}) {
                   );
                 })}
               </div>
-            ))}
+            ))
+          }
           </div>
         )}
       </div>
