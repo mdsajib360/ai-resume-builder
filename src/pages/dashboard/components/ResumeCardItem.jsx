@@ -78,8 +78,8 @@ function ResumeCardItem({resume,refreshData}) {
           <DropdownMenuContent>
            
             <DropdownMenuItem  onClick={()=>navigation('/dashboard/resume/'+resume.documentId+"/edit")}>Edit</DropdownMenuItem>
-            <DropdownMenuItem onClick={()=>navigation('/my-resume/'+resume?.documentId+"/view")}>View</DropdownMenuItem>
-            <DropdownMenuItem onClick={()=>navigation('/my-resume/'+resume?.documentId+"/view")}>Download</DropdownMenuItem>
+            <DropdownMenuItem onClick={()=>navigation('/my-resume/'+resume.documentId+"/view")}>View</DropdownMenuItem>
+            <DropdownMenuItem onClick={()=>navigation('/my-resume/'+resume.documentId+"/view")}>Download</DropdownMenuItem>
             <DropdownMenuItem onClick={()=>setOpenAlert(true)}>Delete</DropdownMenuItem>
             
           </DropdownMenuContent>

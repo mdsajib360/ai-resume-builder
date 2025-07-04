@@ -3,7 +3,7 @@ import React from 'react'
 function EducationalPreview({ resumeInfo }) {
     const themeColors = resumeInfo?.themeColor || 'black'
 
-    console.log(resumeInfo)
+    
   return (
       <div>
                         <h2 className='text-center font-bold text-sm mb-2' style={{ color: themeColors }}>Education</h2>

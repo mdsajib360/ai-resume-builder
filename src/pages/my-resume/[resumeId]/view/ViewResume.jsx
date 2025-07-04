@@ -12,15 +12,15 @@ function ViewResume() {
     const [resumeInfo,setResumeInfo]=useState();
     const {resumeId}=useParams();
 
+    const GetResumeInfo=()=>{
+      GlobalApi.GetResumeById(resumeId).then(resp=>{
+        console.log(resp.data.data);
+        setResumeInfo(resp.data.data);
+      })
+    }
     useEffect(()=>{
         GetResumeInfo();
     },[])
-    const GetResumeInfo=()=>{
-        GlobalApi.GetResumeById(resumeId).then(resp=>{
-            console.log(resp.data.data);
-            setResumeInfo(resp.data.data);
-        })
-    }
 
     const HandleDownload=()=>{
         window.print();
