@@ -1,6 +1,7 @@
 import { Loader2Icon, MoreVertical, Notebook } from 'lucide-react'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import cv from '../../../assets/images/cv.png'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -60,7 +61,7 @@ function ResumeCardItem({resume,refreshData}) {
               <div className='flex 
         items-center justify-center h-[180px] '>
                 {/* <Notebook/> */}
-                <img src="/cv.png" width={80} height={80} />
+                <img src={cv} width={80} height={80} />
               </div>
         </div>
         </Link>

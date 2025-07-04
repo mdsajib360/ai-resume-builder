@@ -2,7 +2,12 @@ import React from 'react'
 import Header from '../../components/header/Header'
 import { Button } from '../../components/ui/button';
 import { Link } from 'react-router-dom';
-
+import Hero1 from '../../assets/images/HERO.jpeg'
+import Hero2 from '../../assets/images/HERO2.jpg'
+import Hero3 from '../../assets/images/HERO3.jpg'
+import featured1 from '../../assets/images/featured/6.jpg'
+import featured2 from '../../assets/images/featured/easy-to-use.png'
+import feature3 from '../../assets/images/featured/3.jpg'
 function Home() {
   return (
     <>
@@ -17,17 +22,17 @@ function Home() {
     </p>
     <div className="flex flex-wrap justify-center gap-6 mt-6">
       <img
-        src="../../../public/images/HERO.jpeg"
+        src={Hero1}
         alt="AI Resume Builder Hero 1"
         className="w-4/5 md:w-2/5 lg:w-1/5 rounded-xl shadow-lg hover:scale-105 transition-transform"
       />
       <img
-        src="../../../public/images/HERO2.jpg"
+        src={Hero2}
         alt="AI Resume Builder Hero 2"
         className="w-4/5 md:w-2/5 lg:w-1/5 rounded-xl shadow-lg hover:scale-105 transition-transform"
       />
       <img
-        src="../../../public/images/HERO3.jpg"
+        src={Hero3}
         alt="AI Resume Builder Hero 3"
         className="w-4/5 md:w-2/5 lg:w-1/5 rounded-xl shadow-lg hover:scale-105 transition-transform"
       />
@@ -65,7 +70,7 @@ function Home() {
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       <div className="text-center p-6 bg-white rounded-lg shadow hover:shadow-xl transition">
         <img 
-          src="../../../public/images/featured/6.jpg" 
+          src={featured1} 
           alt="Feature One" 
           className="mx-auto w-20 h-20 mb-4 rounded-full"
         />
@@ -76,7 +81,7 @@ function Home() {
       </div>
       <div className="text-center p-6 bg-white rounded-lg shadow hover:shadow-xl transition">
         <img 
-          src="../../../public/images/featured/easy-to-use.png" 
+          src={featured2}
           alt="Feature Two" 
           className="mx-auto w-20 h-20 mb-4 rounded-full"
         />
@@ -87,7 +92,7 @@ function Home() {
       </div>
       <div className="text-center p-6 bg-white rounded-lg shadow hover:shadow-xl transition">
         <img 
-          src="../../../public/images/featured/3.jpg" 
+          src={feature3}
           alt="Feature Three" 
           className="mx-auto w-20 h-20 mb-4 rounded-full"
         />
@@ -104,7 +109,7 @@ function Home() {
     {/* Optional Image Section */}
     <div className="flex justify-center mb-4">
       <img 
-        src="../../../public/images/featured/6.jpg" 
+        src={featured1} 
         alt="Resume Builder" 
         className="rounded-lg shadow-lg w-[120px] h-[120px] object-cover"
       />

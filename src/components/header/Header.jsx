@@ -1,14 +1,14 @@
 import { UserButton, useUser } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
-
+import logo from '../../assets/images/logo.png'
 function Header() {
   const { user, isSignedIn, isLoaded } = useUser();
   return (
     <div className=" p-3 px-5 flex item-center justify-between shadow-md">
       <Link to="/">
         <img
-          src="../../../public/logo.png"
+          src={logo}
           width={50}
           height={100}
           alt="logo"
