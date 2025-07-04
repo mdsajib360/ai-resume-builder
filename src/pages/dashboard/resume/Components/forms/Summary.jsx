@@ -6,7 +6,8 @@ import { useParams } from 'react-router-dom'
 import GlobalApi from '../../../../../../service/GlobalApi'
 import { Brain, Loader, LoaderCircle, LoaderPinwheelIcon, LucideLoaderPinwheel } from 'lucide-react'
 import { toast } from 'sonner'
-import { fetchResumeSummary } from '../../../../../../service/AIMODEL'
+import { fetchResumeSummary } from '../../../../../../service/AIModel'
+
 
 const prompt = `job title: full stack react developer. write a 4-5 line summary based on job title for my resume
 . only one option don't give me multiple options `
