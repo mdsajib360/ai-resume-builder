@@ -45,48 +45,55 @@ function ViewResume() {
 }, [resumeInfo]);
 
   return (
-    <>
-      {
-      !resumeInfo &&
-   <div className="flex justify-center mt-20"><Loader className="animate-spin h-8 w-8 " /></div>
+  <>
+    {!resumeInfo && (
+      <div className="flex justify-center mt-20">
+        <Loader className="animate-spin h-8 w-8" />
+      </div>
+    )}
 
-      }
-   { resumeInfo && (
-    <ResumeInfoContext.Provider value={{resumeInfo,setResumeInfo}} >
+    {resumeInfo && (
+      <ResumeInfoContext.Provider value={{ resumeInfo, setResumeInfo }}>
         <div id="no-print">
-            <div className='my-10 mx-10 md:mx-20 lg:mx-36'>
-                <h2 className='text-center text-2xl font-medium'>
-                    Congrats! Your Ultimate AI generates Resume is ready !
-                </h2>
-                <p className='text-center text-gray-400'>
-                    Now you are ready to download your resume and you can share unique
-                    resume url with your friends and family
-                </p>
-                <div className='flex justify-between px-44 my-10'>
-                    <Button onClick={HandleDownload}>Download</Button>
+          <div className="my-10 px-4 md:px-20 lg:px-36">
+            <h2 className="text-center text-2xl font-medium">
+              Congrats! Your Ultimate AI Generated Resume is ready!
+            </h2>
+            <p className="text-center text-gray-400 mt-2">
+              Now you are ready to download your resume and you can share a unique
+              resume URL with your friends and family.
+            </p>
 
-                    <RWebShare
-                        data={{
-                            text: "Hello Everyone, This is my resume please open url to see it",
-                            url: import.meta.env.VITE_BASE_URL+"/my-resume/"+resumeId+"/view",
-                            title: `${resumeInfo.firstName || ''} ${resumeInfo.lastName || ''} resume`, // Defensive access
-                        }}
-                        onClick={() => toast("shared successfully!")}
-                    >
-                        <Button>Share</Button>
-                    </RWebShare>
-                </div>
+            {/* Button Section */}
+            <div className="flex flex-col md:flex-row gap-4 justify-between md:px-44 items-center mt-8">
+              <Button onClick={HandleDownload} className="w-full md:w-auto">
+                Download
+              </Button>
+
+              <RWebShare
+                data={{
+                  text: "Hello Everyone, This is my resume please open url to see it",
+                  url: `${import.meta.env.VITE_BASE_URL}/my-resume/${resumeId}/view`,
+                  title: `${resumeInfo.firstName || ''} ${resumeInfo.lastName || ''} resume`,
+                }}
+                onClick={() => toast("Shared successfully!")}
+              >
+                <Button className="w-full md:w-auto">Share</Button>
+              </RWebShare>
             </div>
+          </div>
         </div>
-        <div className='my-10 mx-10 md:mx-20 lg:mx-36'>
-            <div id="print-area" className='content'>
-                <ResumePreview/> {/* This component will also receive null initially */}
-            </div>
+
+        <div className="my-10 px-4 md:px-20 lg:px-36">
+          <div id="print-area" className="content">
+            <ResumePreview />
+          </div>
         </div>
-    </ResumeInfoContext.Provider>
-)}
-    </>
-  )
+      </ResumeInfoContext.Provider>
+    )}
+  </>
+);
+
 }
 
 export default ViewResume
