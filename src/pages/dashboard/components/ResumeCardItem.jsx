@@ -43,6 +43,7 @@ function ResumeCardItem({resume,refreshData}) {
       setOpenAlert(false);
     },(error)=>{
       setLoading(false);
+      toast(`server error ${error.message}`)
     })
   }
   return (
@@ -78,7 +79,7 @@ function ResumeCardItem({resume,refreshData}) {
           <DropdownMenuContent>
            
             <DropdownMenuItem  onClick={()=>navigation('/dashboard/resume/'+resume.documentId+"/edit")}>Edit</DropdownMenuItem>
-            {resume&& <DropdownMenuItem onClick={()=>navigation('/my-resume/'+resume.documentId+"/view")}>View</DropdownMenuItem>}
+            {resume?.documentId&&  <DropdownMenuItem onClick={()=>navigation('/my-resume/'+resume.documentId+"/view")}>View</DropdownMenuItem>}
             <DropdownMenuItem onClick={()=>navigation('/my-resume/'+resume.documentId+"/view")}>Download</DropdownMenuItem>
             <DropdownMenuItem onClick={()=>setOpenAlert(true)}>Delete</DropdownMenuItem>
             
