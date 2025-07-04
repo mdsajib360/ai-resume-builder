@@ -11,7 +11,7 @@ import feature3 from '../../assets/images/featured/3.jpg'
 function Home() {
   return (
     <>
-      <Header />
+    
      <main className="p-6 bg-gradient-to-b from-gray-50 to-gray-100">
   {/* Hero Section */}
   <section id="home">
