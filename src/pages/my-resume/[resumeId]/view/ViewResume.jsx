@@ -6,21 +6,33 @@ import GlobalApi from '../../../../../service/GlobalApi'
 import ResumePreview from '../../../dashboard/resume/Components/ResumePreview'
 import Header from '../../../../components/header/Header'
 import { ResumeInfoContext } from '../../../../context/ResumeInfoContext'
+import { toast } from 'sonner'
 
 function ViewResume() {
 
-    const [resumeInfo,setResumeInfo]=useState();
+    const [resumeInfo,setResumeInfo]=useState(null);
     const {resumeId}=useParams();
 
-    const GetResumeInfo=()=>{
-      GlobalApi.GetResumeById(resumeId).then(resp=>{
-        console.log(resp.data.data);
-        setResumeInfo(resp.data.data);
-      })
+    // const GetResumeInfo=()=>{
+    //   GlobalApi.GetResumeById(resumeId).then(resp=>{
+    //     console.log(resp.data.data);
+    //     setResumeInfo(resp.data.data);
+    //   })
+    // }
+  useEffect(() => {
+  let isMounted = true;
+
+  GlobalApi.GetResumeById(resumeId).then(resp => {
+    if (isMounted) {
+      console.log(resp.data.data);
+      setResumeInfo(resp.data.data);
     }
-    useEffect(()=>{
-        GetResumeInfo();
-    },[])
+  });
+
+  return () => { isMounted = false; };
+}, [resumeId]);
+
+
 
     const HandleDownload=()=>{
         window.print();
@@ -33,6 +45,11 @@ function ViewResume() {
 
   return (
     <>
+      {
+      !resumeInfo &&
+   <div className="text-center mt-20">Loading resume...</div>
+
+      }
      <ResumeInfoContext.Provider value={{resumeInfo,setResumeInfo}} >
         <div id="no-print">
 
@@ -50,7 +67,7 @@ function ViewResume() {
           url: import.meta.env.VITE_BASE_URL+"/my-resume/"+resumeId+"/view",
           title: resumeInfo?.firstName+" "+resumeInfo?.lastName+" resume",
         }}
-        onClick={() => console.log("shared successfully!")}
+        onClick={() => toast("shared successfully!")}
       > <Button>Share</Button>
       </RWebShare>
             </div>
