@@ -9,8 +9,7 @@ import { toast } from 'sonner'
 import { fetchResumeSummary } from '../../../../../../service/AIModel'
 
 
-const prompt = `job title: full stack react developer. write a 4-5 line summary based on job title for my resume
-. only one option don't give me multiple options `
+
 function Summary({enableNext}) {
     const {resumeInfo, setResumeInfo} = useContext(ResumeInfoContext)
     const [summary, setSummary] = useState();
@@ -67,7 +66,8 @@ function Summary({enableNext}) {
       toast("Summary updated")
     }, (error) => {
       setLoading(false)
-            enableNext(true)
+      enableNext(true)
+      toast(`Server Error ${error.message}`)
 
     })
   }

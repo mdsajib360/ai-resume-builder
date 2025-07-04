@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { RWebShare } from 'react-web-share'
 import GlobalApi from '../../../../../service/GlobalApi'
