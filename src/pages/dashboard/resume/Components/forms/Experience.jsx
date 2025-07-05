@@ -37,7 +37,7 @@ function Experience() {
   ]);
 
   useEffect(() => {
-    resumeInfo?.experiencelist.length>0 && setExperienceList(resumeInfo?.experiencelist);
+    resumeInfo?.experiencelist?.length>0 && setExperienceList(resumeInfo?.experiencelist);
   }, []);
 
   const handleChange = (event, index) => {
