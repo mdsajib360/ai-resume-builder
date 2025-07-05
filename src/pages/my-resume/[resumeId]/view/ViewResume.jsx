@@ -7,7 +7,7 @@ import Header from '../../../../components/header/Header'
 import { ResumeInfoContext } from '../../../../context/ResumeInfoContext'
 import { toast } from 'sonner'
 import { Loader } from 'lucide-react'
-import html2canvas from 'html2canvas'
+import html2canvas from 'html2canvas-pro';
 import jsPDF from 'jspdf'
 
 
@@ -55,39 +55,63 @@ function ViewResume() {
 
 
 
-   const HandleDownload = async () => {
-        if (!printAreaRef.current) return;
-        
-        toast('Generating PDF...');
-        console.log('clicked');
-        
-        try {
-            const element = printAreaRef.current;
-            const canvas = await html2canvas(element, {
-                scale: 2, // Higher quality
-                useCORS: true, // For external images if any
-                logging: false,
-                allowTaint: true
-            });
-            
-            const imgData = canvas.toDataURL('image/png');
-            const pdf = new jsPDF({
-                orientation: 'portrait',
-                unit: 'mm'
-            });
-            
-            const imgProps = pdf.getImageProperties(imgData);
-            const pdfWidth = pdf.internal.pageSize.getWidth();
-            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-            
-            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-            pdf.save(`${resumeInfo.firstName || 'resume'}_${resumeInfo.lastName || ''}.pdf`);
-            toast.success('PDF downloaded successfully!');
-        } catch (error) {
-            console.error('Error generating PDF:', error);
-            toast.error('Failed to generate PDF');
-        }
-    };
+const HandleDownload = async () => {
+  if (!printAreaRef.current) {
+    toast.error('Resume content not found');
+    return;
+  }
+
+  const element = printAreaRef.current;
+  element.classList.add("print-pdf"); // 🔧 Apply fixed size
+
+  await new Promise(resolve => setTimeout(resolve, 100)); // Allow reflow
+
+  try {
+    const canvas = await html2canvas(element, {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: null,
+      allowTaint: true
+    });
+
+    const pdf = new jsPDF({
+      orientation: 'portrait',
+      unit: 'px',
+      format: 'a4',
+      hotfixes: ["px_scaling"]
+    });
+
+    const imgData = canvas.toDataURL('image/png', 1.0);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const imgProps = pdf.getImageProperties(imgData);
+    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+    let heightLeft = pdfHeight;
+    let position = 0;
+    const pageHeight = pdf.internal.pageSize.getHeight();
+
+    pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, pdfHeight);
+
+    while (heightLeft > pageHeight) {
+      position -= pageHeight;
+      pdf.addPage();
+      pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, pdfHeight);
+      heightLeft -= pageHeight;
+    }
+
+    const timestamp = new Date().toISOString().slice(0, 10);
+    pdf.save(`${resumeInfo.firstName}_resume_${timestamp}.pdf`);
+
+    toast.success('PDF generated successfully!');
+  } catch (err) {
+    console.error('PDF Error:', err);
+    toast.error('PDF generation failed');
+  } finally {
+    element.classList.remove("print-pdf"); // cleanup
+  }
+};
+
+
 
 
    useEffect(() => {
@@ -129,8 +153,8 @@ function ViewResume() {
           </div>
         </div>
 
-        <div className="my-10 px-4 md:px-20 lg:px-36">
-          <div id="print-area" className="content" ref={printAreaRef} >
+        <div className="flex justify-center my-10 px-4 md:px-40 lg:px-46">
+          <div id="print-area" ref={printAreaRef} style={{ color: 'black', backgroundColor: 'white' }} >
             <ResumePreview />
           </div>
         </div>

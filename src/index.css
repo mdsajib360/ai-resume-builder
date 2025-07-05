@@ -26,46 +26,7 @@ ol{
 
 }
 
- @media print{
-    #no-print{
-      display: none;
-    }
-
-    #print-area{
-      display: block;
- 
-    }
- @page{
-    size: auto;
-    margin-top: 20px;
-    margin-right: -40px;
-    margin-bottom: 0mm;
-    margin-left: -40px;
-    padding-top:40px;
+/* In your global CSS file */
+  .print-pdf{
+    width: 794px ;
   }
- @page:first{
-  margin-top: -115px;
-  padding-top:0px;
- }
-
-
-  *{
-    box-sizing: border-box;
-    box-shadow:   none;
-  }
- 
- .content {
-                margin-bottom: 1in;
-            }
-            .page-break {
-                break-after: always;
-            }
-  }
-body {
-  
-  background-attachment: fixed;
-  background-size: cover;
- 
-  margin: 0;
-  padding: 0;
-}
