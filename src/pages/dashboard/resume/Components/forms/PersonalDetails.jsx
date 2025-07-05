@@ -52,8 +52,6 @@ function PersonalDetail({enableNext}) {
             enableNext(true);
             setLoading(false);
             toast("Details updated")
-            window.location.reload();
-
             
         },(error)=>{
             setLoading(false);

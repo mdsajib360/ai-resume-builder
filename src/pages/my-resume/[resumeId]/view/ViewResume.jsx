@@ -99,9 +99,8 @@ const HandleDownload = async () => {
       heightLeft -= pageHeight;
     }
 
-    const timestamp = new Date().toISOString().slice(0, 10);
-    pdf.save(`${resumeInfo.firstName}_resume_${timestamp}.pdf`);
-
+    pdf.save(`${resumeInfo.firstName}_resume.pdf`);
+ 
     toast.success('PDF generated successfully!');
   } catch (err) {
     console.error('PDF Error:', err);
@@ -127,37 +126,41 @@ const HandleDownload = async () => {
     )}
 
     {resumeInfo && (
-      <ResumeInfoContext.Provider value={{ resumeInfo, setResumeInfo }}>
-        <div id="no-print">
-          <div className="my-10 px-4 md:px-20 lg:px-36">
-            <h2 className="text-center text-2xl font-medium">
-              Congrats! Your Ultimate AI Generated Resume is ready!
-            </h2>
-            <p className="text-center text-gray-400 mt-2">
-              Now you are ready to download your resume and you can share a unique
-              resume URL with your friends and family.
-            </p>
+  <ResumeInfoContext.Provider value={{ resumeInfo, setResumeInfo }}>
+    <div id="no-print">
+      <div className="my-10 px-4 sm:px-6 md:px-10 lg:px-36">
+        <h2 className="text-center text-2xl font-semibold">
+          Congrats! Your Ultimate AI Generated Resume is ready!
+        </h2>
+        <p className="text-center text-gray-500 mt-2 text-sm sm:text-base">
+          Now you are ready to download your resume and you can share a unique
+          resume URL with your friends and family.
+        </p>
 
-            {/* Button Section */}
-            <div className="flex flex-col md:flex-row gap-4 justify-between md:px-44 items-center mt-8">
-              <Button onClick={HandleDownload} className="w-full md:w-auto">
-                Download
-              </Button>
-
-             
-                <Button onClick={handleShare} className="w-full md:w-auto">Share</Button>
-              
-            </div>
-          </div>
+        {/* Button Section */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
+          <Button onClick={HandleDownload} className="w-full md:w-50 sm:w-auto px-6 py-2">
+            Download
+          </Button>
+          <Button onClick={handleShare} className="w-full md:w-50 sm:w-auto px-6 py-2">
+            Share
+          </Button>
         </div>
+      </div>
+    </div>
 
-        <div className="flex justify-center my-10 px-4 md:px-40 lg:px-46">
-          <div id="print-area" className='print-pdf' ref={printAreaRef} style={{ color: 'black', backgroundColor: 'white' }} >
-            <ResumePreview />
-          </div>
-        </div>
-      </ResumeInfoContext.Provider>
-    )}
+    <div className="flex justify-center my-10 px-4 sm:px-6 md:px-10 lg:px-36">
+      <div
+         className="w-full max-w-[794px] bg-white text-black"
+        ref={printAreaRef}
+        style={{ color: "black", backgroundColor: "white" }}
+      >
+        <ResumePreview />
+      </div>
+    </div>
+  </ResumeInfoContext.Provider>
+)}
+
   </>
 );
 
