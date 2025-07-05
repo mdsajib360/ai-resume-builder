@@ -62,7 +62,7 @@ const HandleDownload = async () => {
   }
 
   const element = printAreaRef.current;
-  element.classList.add("print-pdf"); // 🔧 Apply fixed size
+  // 🔧 Apply fixed size
 
   await new Promise(resolve => setTimeout(resolve, 100)); // Allow reflow
 
@@ -106,9 +106,7 @@ const HandleDownload = async () => {
   } catch (err) {
     console.error('PDF Error:', err);
     toast.error('PDF generation failed');
-  } finally {
-    element.classList.remove("print-pdf"); // cleanup
-  }
+  } 
 };
 
 
@@ -154,7 +152,7 @@ const HandleDownload = async () => {
         </div>
 
         <div className="flex justify-center my-10 px-4 md:px-40 lg:px-46">
-          <div id="print-area" ref={printAreaRef} style={{ color: 'black', backgroundColor: 'white' }} >
+          <div id="print-area" className='print-pdf' ref={printAreaRef} style={{ color: 'black', backgroundColor: 'white' }} >
             <ResumePreview />
           </div>
         </div>
