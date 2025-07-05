@@ -63,7 +63,10 @@ const HandleDownload = async () => {
 
   const element = printAreaRef.current;
   // 🔧 Apply fixed size
-
+  const width = element.offsetWidth;
+  const height = element.offsetHeight;
+  console.log(width, height);
+  
   await new Promise(resolve => setTimeout(resolve, 100)); // Allow reflow
 
   try {
@@ -77,7 +80,7 @@ const HandleDownload = async () => {
     const pdf = new jsPDF({
       orientation: 'portrait',
       unit: 'px',
-      format: 'a4',
+      format: [width, height],
       hotfixes: ["px_scaling"]
     });
 
@@ -99,7 +102,7 @@ const HandleDownload = async () => {
       heightLeft -= pageHeight;
     }
 
-    pdf.save(`${resumeInfo.firstName}_resume.pdf`);
+    pdf.save(`${resumeInfo?.firstName} ${resumeInfo?.lastName}_resume.pdf`);
  
     toast.success('PDF generated successfully!');
   } catch (err) {
@@ -150,8 +153,9 @@ const HandleDownload = async () => {
     </div>
 
     <div className="flex justify-center my-10 px-4 sm:px-6 md:px-10 lg:px-36">
-      <div
-         className="w-full max-w-[794px] bg-white text-black"
+            <div
+              id='print-area'
+        className="w-[320px] sm:w-[585px] md:w-[794px]"
         ref={printAreaRef}
         style={{ color: "black", backgroundColor: "white" }}
       >

@@ -70,7 +70,7 @@ function Experience() {
     setLoading(true);
     const data = {
       data: {
-        experiencelist: experienceList.map(({ ...rest }) => rest),
+        experiencelist: experienceList.map(({ id, ...rest }) => rest),
       },
     };
 
