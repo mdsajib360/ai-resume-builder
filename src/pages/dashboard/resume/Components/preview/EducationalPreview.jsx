@@ -1,3 +1,4 @@
+import { Loader } from 'lucide-react'
 import React from 'react'
 
 function EducationalPreview({ resumeInfo }) {
@@ -8,6 +9,13 @@ function EducationalPreview({ resumeInfo }) {
       <div>
                         <h2 className='text-center font-bold text-sm mb-2' style={{ color: themeColors }}>Education</h2>
           <hr className='border-[1.5px] my-2' style={{ borderColor: themeColors }} />
+          {
+              !resumeInfo.education && (
+                   <div className="flex justify-center mt-20">
+        <Loader className="animate-spin h-8 w-8" />
+      </div>
+              )
+          }
           {
               resumeInfo?.education?.map((education, index) => (
                   <div key={index} className='my-5'>

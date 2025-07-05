@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from '../../components/header/Header'
 import { Button } from '../../components/ui/button';
 import { Link } from 'react-router-dom';
@@ -9,6 +9,11 @@ import featured1 from '../../assets/images/featured/6.jpg'
 import featured2 from '../../assets/images/featured/easy-to-use.png'
 import feature3 from '../../assets/images/featured/3.jpg'
 function Home() {
+    useEffect(() => {
+   
+      document.title = `Ai Resume Builder`;
+    
+  }, []);
   return (
     <>
     

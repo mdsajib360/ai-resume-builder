@@ -21,7 +21,7 @@ function Skills() {
     const {resumeInfo,setResumeInfo}=useContext(ResumeInfoContext);
    
     useEffect(()=>{
-        resumeInfo&&setSkillsList(resumeInfo?.skills)
+        resumeInfo?.skills>0&&setSkillsList(resumeInfo?.skills)
       },[])
    
     const handleChange=(index,name,value)=>{
@@ -46,7 +46,7 @@ function Skills() {
         setLoading(true);
         const data={
             data:{
-                skills:skillsList.map(({ id, ...rest }) => rest)
+                skills:skillsList.map(({ ...rest }) => rest)
             }
         }
 
@@ -57,7 +57,7 @@ function Skills() {
             toast('Details updated !')
         },(error)=>{
             setLoading(false);
-            toast('Server Error, Try again!')
+            toast('Server Error, Try again! '+ error.message)
         })
     }
 
@@ -74,7 +74,7 @@ function Skills() {
 
     <div>
         {skillsList.map((item,index)=>(
-            <div className='flex justify-between mb-2 border rounded-lg p-3 '>
+            <div key={index} className='flex justify-between mb-2 border rounded-lg p-3 '>
                 <div>
                     <label className='text-xs'>Name</label>
                     <Input className="w-full"

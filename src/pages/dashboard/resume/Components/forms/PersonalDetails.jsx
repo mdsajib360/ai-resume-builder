@@ -13,7 +13,8 @@ function PersonalDetail({enableNext}) {
     const {resumeInfo,setResumeInfo}=useContext(ResumeInfoContext)
     console.log(resumeInfo)
     const [formData, setFormData] = useState();
-    const [loading,setLoading]=useState(false);
+    const [loading, setLoading] = useState(false);
+    
     useEffect(()=>{
         console.log("---",resumeInfo)
     },[])
@@ -22,7 +23,6 @@ function PersonalDetail({enableNext}) {
         console.log('formData', formData)
         enableNext(false)
         const {name,value}=e.target;
-
         setFormData({
             ...formData,
             [name]:value
@@ -31,6 +31,7 @@ function PersonalDetail({enableNext}) {
             ...resumeInfo,
             [name]:value
         })
+       
                 console.log('formData', formData)
 
     }
@@ -51,6 +52,9 @@ function PersonalDetail({enableNext}) {
             enableNext(true);
             setLoading(false);
             toast("Details updated")
+            window.location.reload();
+
+            
         },(error)=>{
             setLoading(false);
             toast('server error ', error.message)

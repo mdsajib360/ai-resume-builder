@@ -26,7 +26,7 @@ function Education() {
   ])
 
   useEffect(()=>{
-    resumeInfo&&setEducationalList(resumeInfo?.education)
+    resumeInfo?.education.length>0&&setEducationalList(resumeInfo?.education)
   },[])
   const handleChange=(event,index)=>{
     const newEntries=educationalList.slice();
@@ -55,7 +55,7 @@ function Education() {
     setLoading(true)
     const data={
       data:{
-        education:educationalList.map(({ id, ...rest }) => rest)
+        education:educationalList.map(({ ...rest }) =>  rest )
       }
     }
 
@@ -77,68 +77,84 @@ function Education() {
     })
   },[educationalList])
   return (
-    <div className='p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10'>
-    <h2 className='font-bold text-lg'>Education</h2>
-    <p>Add Your educational details</p>
+  <div className='p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10'>
+  <h2 className='font-bold text-lg'>Education</h2>
+  <p>Add Your educational details</p>
 
-    <div>
-      {educationalList.map((item,index)=>(
-        <div key={index}>
-          <div className='grid grid-cols-2 gap-3 border p-3 my-5 rounded-lg'>
-            <div className='col-span-2'>
-              <label>University Name</label>
-              <Input name="universityName" 
-              onChange={(e)=>handleChange(e,index)}
+  <div>
+    {educationalList.map((item, index) => (
+      <div key={index}>
+        <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 border p-3 my-5 rounded-lg'>
+          <div className='col-span-1 sm:col-span-2'>
+            <label>University Name</label>
+            <Input
+              name="universityName"
+              onChange={(e) => handleChange(e, index)}
               defaultValue={item?.universityName}
-              />
-            </div>
-            <div>
-              <label>Degree</label>
-              <Input name="degree" 
-              onChange={(e)=>handleChange(e,index)}
-              defaultValue={item?.degree} />
-            </div>
-            <div>
-              <label>Major</label>
-              <Input name="major" 
-              onChange={(e)=>handleChange(e,index)}
-              defaultValue={item?.major} />
-            </div>
-            <div>
-              <label>Start Date</label>
-              <Input type="date" name="startDate" 
-              onChange={(e)=>handleChange(e,index)}
-              defaultValue={item?.startDate} />
-            </div>
-            <div>
-              <label>End Date</label>
-              <Input type="date" name="endDate" 
-              onChange={(e)=>handleChange(e,index)}
-              defaultValue={item?.endDate} />
-            </div>
-            <div className='col-span-2'>
-              <label>Description</label>
-              <Textarea name="description" 
-              onChange={(e)=>handleChange(e,index)}
-              defaultValue={item?.description} />
-            </div>
-
+            />
           </div>
-       
+          <div>
+            <label>Degree</label>
+            <Input
+              name="degree"
+              onChange={(e) => handleChange(e, index)}
+              defaultValue={item?.degree}
+            />
+          </div>
+          <div>
+            <label>Major</label>
+            <Input
+              name="major"
+              onChange={(e) => handleChange(e, index)}
+              defaultValue={item?.major}
+            />
+          </div>
+          <div>
+            <label>Start Date</label>
+            <Input
+              type="date"
+              name="startDate"
+              onChange={(e) => handleChange(e, index)}
+              defaultValue={item?.startDate}
+            />
+          </div>
+          <div>
+            <label>End Date</label>
+            <Input
+              type="date"
+              name="endDate"
+              onChange={(e) => handleChange(e, index)}
+              defaultValue={item?.endDate}
+            />
+          </div>
+          <div className='col-span-1 sm:col-span-2'>
+            <label>Description</label>
+            <Textarea
+              name="description"
+              onChange={(e) => handleChange(e, index)}
+              defaultValue={item?.description}
+            />
+          </div>
         </div>
-      ))}
-    </div>
-    <div className='flex justify-between'>
-            <div className='flex gap-2'>
-            <Button variant="outline" onClick={AddNewEducation} className="text-primary"> + Add More Education</Button>
-            <Button variant="outline" onClick={RemoveEducation} className="text-primary"> - Remove</Button>
+      </div>
+    ))}
+  </div>
 
-            </div>
-            <Button disabled={loading} onClick={()=>onSave()}>
-            {loading?<LoaderCircle className='animate-spin' />:'Save'}    
-            </Button>
-        </div>
+  <div className='flex flex-col sm:flex-row justify-between gap-3'>
+    <div className='flex flex-col sm:flex-row gap-2'>
+      <Button variant="outline" onClick={AddNewEducation} className="text-primary">
+        + Add More Education
+      </Button>
+      <Button variant="outline" onClick={RemoveEducation} className="text-primary">
+        - Remove
+      </Button>
     </div>
+    <Button disabled={loading} onClick={() => onSave()}>
+      {loading ? <LoaderCircle className='animate-spin' /> : 'Save'}
+    </Button>
+  </div>
+</div>
+
   )
 }
 
